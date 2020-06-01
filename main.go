@@ -1,6 +1,6 @@
 package main
 
-import "github.com/ultramozg/gget/commands"
+import commands "github.com/ultramozg/gget/cmd"
 
 func main() {
 	commands.Execute()
