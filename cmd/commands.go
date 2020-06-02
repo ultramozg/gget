@@ -3,6 +3,7 @@ package cmd
 import (
 	"errors"
 	"fmt"
+	"net/url"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -16,10 +17,12 @@ var rootCmd = &cobra.Command{
 		if len(args) < 2 {
 			return errors.New("requires a URL")
 		}
-		/*if myapp.IsValidColor(args[0]) {
-			return nil
-		}*/
-		return fmt.Errorf("invalid URL specified: %s", args[1])
+		_, err := url.ParseRequestURI(args[1])
+		// call the download function
+		if err != nil {
+			return fmt.Errorf("invalid URL specified: %s", args[1])
+		}
+		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println(args)
