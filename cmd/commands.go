@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+	"github.com/ultramozg/gget/app"
 )
 
 var rootCmd = &cobra.Command{
@@ -18,14 +19,13 @@ var rootCmd = &cobra.Command{
 			return errors.New("requires a URL")
 		}
 		_, err := url.ParseRequestURI(args[1])
-		// call the download function
 		if err != nil {
 			return fmt.Errorf("invalid URL specified: %s", args[1])
 		}
 		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println(args)
+		app.DownloadFile("test", args[1])
 	},
 }
 
