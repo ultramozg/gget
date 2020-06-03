@@ -4,6 +4,8 @@ import (
 	"io"
 	"net/http"
 	"os"
+
+	"github.com/schollz/progressbar/v3"
 )
 
 func DownloadFile(url, file string) error {
@@ -19,6 +21,11 @@ func DownloadFile(url, file string) error {
 	}
 	defer out.Close()
 
-	_, err = io.Copy(out, resp.Body)
+	bar := progressbar.DefaultBytes(
+		resp.ContentLength,
+		"downloading",
+	)
+
+	_, err = io.Copy(io.MultiWriter(out, bar), resp.Body)
 	return err
 }
