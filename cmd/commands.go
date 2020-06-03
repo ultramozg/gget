@@ -15,8 +15,8 @@ var rootCmd = &cobra.Command{
 	Short: "Download file",
 	Long:  "gget utility is using for download and upload files via http",
 	Args: func(cmd *cobra.Command, args []string) error {
-		if len(args) < 2 {
-			return errors.New("requires a URL")
+		if len(args) != 3 {
+			return errors.New("requires an URL and filename")
 		}
 		_, err := url.ParseRequestURI(args[1])
 		if err != nil {
@@ -25,7 +25,7 @@ var rootCmd = &cobra.Command{
 		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		app.DownloadFile("test", args[1])
+		app.DownloadFile(args[1], args[2])
 	},
 }
 
