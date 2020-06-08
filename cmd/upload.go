@@ -28,6 +28,8 @@ var uploadCmd = &cobra.Command{
 		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		app.UploadFile(args[0], args[1])
+		if err := app.UploadFile(args[0], args[1]); err != nil {
+			fmt.Println("Error: ", err)
+		}
 	},
 }

@@ -2,6 +2,7 @@ package app
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -48,6 +49,9 @@ func UploadFile(url, file string) error {
 		return err
 	}
 	fmt.Println(resp.Status)
+	if resp.StatusCode != http.StatusOK {
+		return errors.New("Failed upload file to the server")
+	}
 	fmt.Println(string(respBody))
 	return nil
 }
