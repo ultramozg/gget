@@ -8,9 +8,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "my_flags",
-	Short: "A brief description of your application",
-	Long:  `A longer description.`,
+	Use:   "gget",
+	Short: "This is a tool to download and upload files",
+	Long:  `This is a tool to download and upload files over http protocol`,
 }
 
 func Execute() {
