@@ -18,16 +18,16 @@ var uploadCmd = &cobra.Command{
 	Short: "Upload file",
 	Long:  "upload a file",
 	Args: func(cmd *cobra.Command, args []string) error {
-		if len(args) != 3 {
+		if len(args) != 2 {
 			return errors.New("requires an URL and filename")
 		}
-		_, err := url.ParseRequestURI(args[1])
+		_, err := url.ParseRequestURI(args[0])
 		if err != nil {
-			return fmt.Errorf("invalid URL specified: %s", args[1])
+			return fmt.Errorf("invalid URL specified: %s", args[0])
 		}
 		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		app.UploadFile(args[1], args[2])
+		app.UploadFile(args[0], args[1])
 	},
 }
