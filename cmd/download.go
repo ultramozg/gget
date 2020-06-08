@@ -28,6 +28,8 @@ var downloadCmd = &cobra.Command{
 		return nil
 	},
 	Run: func(cmd *cobra.Command, args []string) {
-		app.DownloadFile(args[0], args[1])
+		if err := app.DownloadFile(args[0], args[1]); err != nil {
+			fmt.Println("Error: ", err)
+		}
 	},
 }
