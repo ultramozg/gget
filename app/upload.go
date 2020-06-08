@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-func UploadFile(file string, url string) error {
+func UploadFile(url, file string) error {
 	bodyBuf := &bytes.Buffer{}
 	bodyWriter := multipart.NewWriter(bodyBuf)
 
@@ -24,7 +24,7 @@ func UploadFile(file string, url string) error {
 	// open file handle
 	fh, err := os.Open(file)
 	if err != nil {
-		fmt.Println("error opening file")
+		fmt.Println("error opening file", err)
 		return err
 	}
 	defer fh.Close()
